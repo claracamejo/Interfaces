@@ -1,12 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Clase 1 - Template</title>
-  </head>
-  <body>
-    <canvas id="mycanvas" width="500" height="500"></canvas>
-    <input type="color" name="color" id="color" />
-    <script src="./js/index.js"></script>
-  </body>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <title>Entregable Trabajo Practico 1</title>
+</head>
+
+<body>
+  <div>
+    <input type="color" id="color" class="border-0 rounded-pill" />
+    <input type="range" class="rounded-pill btn btn-primary" id="tam" min="1" max="25" value="1" />
+    <input type="button" value="Borrar" id="borrar" class="rounded-pill btn btn-primary" />
+    <a class="rounded-pill btn btn-primary" id="download" download="myImage.jpg" href="">Guardar</a>
+    <input type="file" id="img" class="rounded-pill btn btn-primary">
+
+
+  </div>
+  <canvas id="mycanvas" width="500" height="500"></canvas>
+
+  <script src="./js/index.js"></script>
+</body>
+
 </html>
