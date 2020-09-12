@@ -25,8 +25,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let imageScaledHeight;
   let imageData;
 
-  let btn = document.querySelector("#download");
-  btn.addEventListener("click", function () {
+  document.querySelector("#saturation-level").addEventListener("change", saturation_effect);
+
+  let btn = document.querySelector("#download").addEventListener("click", function () {
     let image = canvas.toDataURL("image/jpg");
     this.href = image;
   });
@@ -99,24 +100,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
         ctx.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
 
         imageData = ctx.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
-
-
-        let tmppx = new Uint8ClampedArray(imageData.width);
-
-        for (let j = 0; j < imageData.width; j++) {
-          if (j % 4 === 3) { continue; }
-
-          imageData[j] = (tmppx[j]
-            + (tmppx[j - 4] || tmppx[j])
-            + (tmppx[j + 4] || tmppx[j])
-            + (tmppx[j - 4 * imageData.width] || tmppx[j])
-            + (tmppx[j + 4 * imageData.width] || tmppx[j])
-            + (tmppx[j - 4 * imageData.width - 4] || tmppx[j])
-            + (tmppx[j + 4 * imageData.width + 4] || tmppx[j])
-            + (tmppx[j - 4 * imageData.width + 4] || tmppx[j])
-            + (tmppx[j + 4 * imageData.width - 4] || tmppx[j])
-          ) / 9;
-        }
 
         ctx.putImageData(imageData, 0, 0);
       }
@@ -247,6 +230,24 @@ document.addEventListener("DOMContentLoaded", function (event) {
       ) / 9;
     }
 
+    ctx.putImageData(imageData, 0, 0);
+  }
+
+  function saturation_effect(event) {
+
+    let value = 0 - event.target.value; //range between -100 and 0
+    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let dataArr = imageData.data;
+    for (let i = 0; i < dataArr.length; i += 4) {
+      let r = dataArr[i];
+      let g = dataArr[i + 1];
+      let b = dataArr[i + 2];
+
+      var gray = 0.2989 * r + 0.5870 * g + 0.1140 * b;
+      dataArr[i] = gray * value + dataArr[i] * (1 - value);
+      dataArr[i + 1] = gray * value + dataArr[i + 1] * (1 - value);
+      dataArr[i + 2] = gray * value + dataArr[i + 2] * (1 - value);
+    }
     ctx.putImageData(imageData, 0, 0);
   }
 });
