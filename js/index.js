@@ -1,23 +1,47 @@
 document.addEventListener("DOMContentLoaded", function (event) {
   let canvas = document.querySelector("#mycanvas");
-  canvas.addEventListener("mousedown", posInicio);
-  canvas.addEventListener("mouseup", posFin);
+  canvas.addEventListener("mousedown", function (e) {
+    pintando = true;
+    dibujando(e);
+  });
+  canvas.addEventListener("mouseup", function () {
+    pintando = false;
+    ctx.beginPath();
+  });
   canvas.addEventListener("mousemove", dibujando);
 
   let ctx = canvas.getContext("2d");
+  ctx.lineCap = "round";//para que quede por defecto, despues se modifica en borrar y lapiz;
 
   let rect = canvas.getBoundingClientRect();
 
   let pintando = false;
-  let colorPicker = document.querySelector("#color");
-  colorPicker.addEventListener("change", watchColorPicker);
+  let color;
+  document.querySelector("#color").addEventListener("change", function (e) {
+    color = e.target.value;
+    ctx.strokeStyle = color;
+  });
 
-  let tamanio = document.querySelector("#tam").addEventListener("change", tamPencil);
+  document.querySelector("#tam").addEventListener("change", function (e) {
+    ctx.lineWidth = e.target.value;
+    //console.log("tamaño del lapiz", (ctx.lineWidth = e.target.value));
+  });
 
-  let borrado = false;
-  let gomaBorrar = document.querySelector("#borrar").addEventListener("click", borrar);
+  document.querySelector("#borrar").addEventListener("click", function () {
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineCap = "square";
 
-  let img = document.querySelector("#img").addEventListener("change", cargarImg);
+  });
+
+  document.querySelector("#lapiz").addEventListener('click', lapiz);
+
+  function lapiz() {
+    console.log("lapiz");
+    ctx.strokeStyle = color;
+    ctx.lineCap = "round";
+  }
+
+  document.querySelector("#img").addEventListener("change", cargarImg);
   let content;
   let image;
   let imageAspectRatio;
@@ -25,58 +49,26 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let imageScaledHeight;
   let imageData;
 
-  document.querySelector("#saturation-level").addEventListener("change", saturation_effect);
-
-  let btn = document.querySelector("#download").addEventListener("click", function () {
+  document.querySelector("#download").addEventListener("click", function () {
     let image = canvas.toDataURL("image/jpg");
     this.href = image;
+    console.log("descargando imagen...")
   });
 
-  function watchColorPicker(event) {
-    ctx.strokeStyle = event.target.value;
-    console.log("cambio de color");
-  }
-
-  function tamPencil(event) {
-    ctx.lineWidth = event.target.value;
-    console.log("tamaño del lapiz", (ctx.lineWidth = event.target.value));
-  }
-
-  function borrar(e) {
-    console.log("entro a borrar");
-    borrado = true;
-    borrando(e);
-  }
-
-  function posInicio(e) {
-    pintando = true;
-    dibujando(e);
-  }
-
-  function posFin() {
-    pintando = false;
-    ctx.beginPath();
-  }
+  document.querySelector("#reset").addEventListener("click", function () {
+    canvas.width = '500';
+    canvas.height = '500';
+    lapiz();
+  })
 
   function dibujando(e) {
     borrado = false;
     if (!pintando) return;
 
-    ctx.lineCap = "round"; //forma del lapiz;
-
     ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
     ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-  }
-
-  function borrando(e) {
-    if (!borrado) return;
-
-    ctx.clearRect(e.clientX - rect.left, e.clientY - rect.top, 15, 15);
-    ctx.beginPath();
-
-    borrado = false;
   }
 
   function cargarImg(e) {
@@ -90,28 +82,33 @@ document.addEventListener("DOMContentLoaded", function (event) {
       content = readerEvent.target.result; // this is the content!
       image = new Image();
 
-      image.src = content;
-
-      image.onload = function () {
-        imageAspectRatio = (1.0 * this.height) / this.width;
-        imageScaledWidth = canvas.width;
-        imageScaledHeight = canvas.width * imageAspectRatio;
-
-        ctx.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
-
-        imageData = ctx.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
-
-        ctx.putImageData(imageData, 0, 0);
-      }
-
-
+      imgLoad();
     };
   };
 
-  download_img = function (el) {
-    var image = canvas.toDataURL("image/jpg");
-    el.href = image;
+
+  function imgLoad() {
+    image.src = content;
+
+    image.onload = function () {
+      canvas.width = this.width;
+      canvas.height = this.height;
+      imageAspectRatio = (1.0 * this.height) / this.width;
+      imageScaledWidth = canvas.width;
+      imageScaledHeight = canvas.width * imageAspectRatio;
+
+      ctx.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
+
+      imageData = ctx.getImageData(0, 0, imageScaledWidth, imageScaledHeight);
+
+      ctx.putImageData(imageData, 0, 0);
+      lapiz();
+    }
   };
+
+  document.querySelector('#limpiar').addEventListener('click', imgLoad);
+
+  document.querySelector('#negativo').addEventListener('click', negativo);
 
   function negativo() {
 
@@ -133,6 +130,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     ctx.putImageData(imageData, 0, 0);
   }
 
+  document.querySelector('#brillo').addEventListener('click', brillo);
+
   function brillo() {
     for (let j = 0; j < imageData.height; j++) {
       for (let i = 0; i < imageData.width; i++) {
@@ -147,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     ctx.putImageData(imageData, 0, 0);
   }
 
+  document.querySelector('#sepia').addEventListener('click', sepia);
   function sepia() {
     for (let j = 0; j < imageData.height; j++) {
       for (let i = 0; i < imageData.width; i++) {
@@ -183,7 +183,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     ctx.putImageData(imageData, 0, 0);
-  }
+  };
+
+  document.querySelector('#binarizacion').addEventListener('click', binarizacion);
 
   function binarizacion() {
 
@@ -212,7 +214,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   }
 
+  document.querySelector('#blur').addEventListener('click', blur);
+
   function blur() {
+    console.log("blur");
     let tmppx = new Uint8ClampedArray(imageData.width);
 
     for (let j = 0; j < imageData.width; j++) {
@@ -233,7 +238,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     ctx.putImageData(imageData, 0, 0);
   }
 
-  function saturation_effect(event) {
+  document.querySelector("#saturation-level").addEventListener("change", saturation);
+
+  function saturation(event) {
 
     let value = 0 - event.target.value; //range between -100 and 0
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
