@@ -228,47 +228,45 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   function blur() {
 
-    let px = imageData.data;
-    let tmppx = new Uint8ClampedArray(px.length);
+    let data = imageData.data;
+    let tmpdata = new Uint8ClampedArray(data.length);
 
-    for (let j = 0; j < px.length; j++) {
-      tmppx[j] = px[j];//copio los pixeles en RGBa
+    for (let j = 0; j < data.length; j++) {
+      tmpdata[j] = data[j];//copio los pixeles en RGBa
 
       if (j % 4 === 3) { continue; }
 
-      px[j] = (tmppx[j]     //recorre y modifa el pixel con el promedio de los pixeles vecinos
-        + (tmppx[j - 4] || tmppx[j])
-        + (tmppx[j + 4] || tmppx[j])
-        + (tmppx[j - 4 * imageData.width] || tmppx[j])
-        + (tmppx[j + 4 * imageData.width] || tmppx[j])
-        + (tmppx[j - 4 * imageData.width - 4] || tmppx[j])
-        + (tmppx[j + 4 * imageData.width + 4] || tmppx[j])
-        + (tmppx[j - 4 * imageData.width + 4] || tmppx[j])
-        + (tmppx[j + 4 * imageData.width - 4] || tmppx[j])
+      data[j] = (tmpdata[j]     //recorre y modifa el pixel con el promedio de los pixeles vecinos
+        + (tmpdata[j - 4] || tmpdata[j])
+        + (tmpdata[j + 4] || tmpdata[j])
+        + (tmpdata[j - 4 * imageData.width] || tmpdata[j])
+        + (tmpdata[j + 4 * imageData.width] || tmpdata[j])
+        + (tmpdata[j - 4 * imageData.width - 4] || tmpdata[j])
+        + (tmpdata[j + 4 * imageData.width + 4] || tmpdata[j])
+        + (tmpdata[j - 4 * imageData.width + 4] || tmpdata[j])
+        + (tmpdata[j + 4 * imageData.width - 4] || tmpdata[j])
       ) / 9;
     }
 
     ctx.putImageData(imageData, 0, 0);
-    delete tmppx;
+    delete tmpdata;
   }
 
   document.querySelector("#saturation-level").addEventListener("change", saturation);
-
   function saturation(event) {
     image.onload();
 
-    let value = 0 - event.target.value; //range between -100 and 0
-    let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    let dataArr = imageData.data;
-    for (let i = 0; i < dataArr.length; i += 4) {
-      let r = dataArr[i];
-      let g = dataArr[i + 1];
-      let b = dataArr[i + 2];
+    let value = 0 - event.target.value;
+    let data = imageData.data;
+    for (let i = 0; i < data.length; i += 4) {
+      let r = data[i];
+      let g = data[i + 1];
+      let b = data[i + 2];
 
       var gray = 0.2989 * r + 0.5870 * g + 0.1140 * b;
-      dataArr[i] = gray * value + dataArr[i] * (1 - value);
-      dataArr[i + 1] = gray * value + dataArr[i + 1] * (1 - value);
-      dataArr[i + 2] = gray * value + dataArr[i + 2] * (1 - value);
+      data[i] = gray * value + data[i] * (1 - value);
+      data[i + 1] = gray * value + data[i + 1] * (1 - value);
+      data[i + 2] = gray * value + data[i + 2] * (1 - value);
     }
     ctx.putImageData(imageData, 0, 0);
   }
