@@ -22,9 +22,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     ctx.strokeStyle = color;
   });
 
+  let tam;
   document.querySelector("#tam").addEventListener("change", function (e) {
-    ctx.lineWidth = e.target.value;
-    //console.log("tamaño del lapiz", (ctx.lineWidth = e.target.value));
+    tam = e.target.value;
+    ctx.lineWidth = tam;
+    console.log("tamaño del lapiz", (tam, e.target.value));
   });
 
   document.querySelector("#borrar").addEventListener("click", function () {
@@ -37,9 +39,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   function lapiz() {
     console.log("lapiz");
+    ctx.lineWidth = tam;
     ctx.strokeStyle = color;
     ctx.lineCap = "round";
-  }
+  };
 
   document.querySelector("#img").addEventListener("change", cargarImg);
   let content;
