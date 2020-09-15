@@ -59,8 +59,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
   });
 
   document.querySelector("#reset").addEventListener("click", function () {
-    canvas.width = '500';
-    canvas.height = '500';
+
+    canvas.width = '1100';
+    canvas.height = '550';
     content = null;
     image = null;
     imageData = null;

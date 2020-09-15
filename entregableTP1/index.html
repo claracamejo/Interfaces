@@ -20,7 +20,7 @@
     <button class="rounded-pill btn btn-primary" onclick="document.querySelector('#img').click();">Agregar
       Imagen</button>
     <input type="file" id="img" style="display: none;">
-    <a class="rounded-pill btn btn-primary" id="download" download="myImage.jpg" href="">Guardar</a>
+    <a class="rounded-pill btn btn-primary" id="download" download="myImage.jpg">Guardar</a>
     <button class="rounded-pill btn btn-primary" id="reset">Reset</button>
 
     <div class="btn-group">
@@ -29,13 +29,13 @@
         Filtros
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" id="limpiar" href="#">Limpiar Imagen</a>
-        <a class="dropdown-item" id="negativo" href="#">Negativo</a>
-        <a class="dropdown-item" id="brillo" href="#" title="para agregar mas brillo volver a clikear">Brillo</a>
-        <a class="dropdown-item" id="binarizacion" href="#">Binarización</a>
-        <a class="dropdown-item" id="sepia" href="#">sepia</a>
+        <a class="dropdown-item" id="limpiar">Limpiar Imagen</a>
+        <a class="dropdown-item" id="negativo">Negativo</a>
+        <a class="dropdown-item" id="brillo" title="para agregar mas brillo volver a clikear">Brillo</a>
+        <a class="dropdown-item" id="binarizacion">Binarización</a>
+        <a class="dropdown-item" id="sepia">sepia</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" id="blur" href="#">Blur</a>
+        <a class="dropdown-item" id="blur" title="para mayor desenfoque, volver a clikear">Blur</a>
         <label for="saturation-level">Nivel de Saturacion</label>
         <input type="range" class="dropdown-item" id="saturation-level" value="0" min="0" max="10"> </input>
       </div>
