@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   let imageData;
 
   document.querySelector("#download").addEventListener("click", function () {
-    let image = canvas.toDataURL("image/jpg");
+    image = canvas.toDataURL("image/jpg");
     this.href = image;
     console.log("descargando imagen...")
   });
@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector("#reset").addEventListener("click", function () {
     canvas.width = '500';
     canvas.height = '500';
+
     lapiz();
   })
 
@@ -218,12 +219,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   function blur() {
     console.log("blur");
-    let tmppx = new Uint8ClampedArray(imageData.width);
+    let px = imageData.data;
+    let tmppx = new Uint8ClampedArray(px.length);
 
-    for (let j = 0; j < imageData.width; j++) {
+    for (let j = 0; j < px.length; j++) {
+      tmppx[j] = px[j];
+    }
+
+
+    for (let j = 0; j < px.length; j++) {
       if (j % 4 === 3) { continue; }
 
-      imageData[j] = (tmppx[j]
+      px[j] = (tmppx[j]
         + (tmppx[j - 4] || tmppx[j])
         + (tmppx[j + 4] || tmppx[j])
         + (tmppx[j - 4 * imageData.width] || tmppx[j])
@@ -236,6 +243,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
 
     ctx.putImageData(imageData, 0, 0);
+    delete tmppx;
   }
 
   document.querySelector("#saturation-level").addEventListener("change", saturation);
