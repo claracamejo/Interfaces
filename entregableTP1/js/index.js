@@ -58,7 +58,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector("#reset").addEventListener("click", function () {
     canvas.width = '500';
     canvas.height = '500';
-
+    content = null;
+    image = null;
+    imageData = null;
     lapiz();
   })
 
@@ -94,12 +96,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     image.onload = function () {
 
       imageAspectRatio = (1.0 * this.width) / this.height;
-
       imageScaledHeight = canvas.height;
       imageScaledWidth = canvas.height * imageAspectRatio;
       canvas.width = imageScaledWidth;
-
-      //canvas.height = this.height
 
       ctx.drawImage(this, 0, 0, imageScaledWidth, imageScaledHeight);
 
@@ -115,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector('#negativo').addEventListener('click', negativo);
 
   function negativo() {
+    image.onload();
 
     for (let j = 0; j < imageData.height; j++) {
       for (let i = 0; i < imageData.width; i++) {
@@ -152,6 +152,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
   document.querySelector('#sepia').addEventListener('click', sepia);
   function sepia() {
+    image.onload();
+
     for (let j = 0; j < imageData.height; j++) {
       for (let i = 0; i < imageData.width; i++) {
         let index = (i + imageData.width * j) * 4;
@@ -192,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector('#binarizacion').addEventListener('click', binarizacion);
 
   function binarizacion() {
-
+    image.onload();
     for (let j = 0; j < imageData.height; j++) {
       for (let i = 0; i < imageData.width; i++) {
         let index = (i + imageData.width * j) * 4;
@@ -221,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector('#blur').addEventListener('click', blur);
 
   function blur() {
-    console.log("blur");
+
     let px = imageData.data;
     let tmppx = new Uint8ClampedArray(px.length);
 
@@ -249,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   document.querySelector("#saturation-level").addEventListener("change", saturation);
 
   function saturation(event) {
+    image.onload();
 
     let value = 0 - event.target.value; //range between -100 and 0
     let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
