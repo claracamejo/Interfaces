@@ -82,9 +82,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     console.log("cargar img");
 
     let file = e.target.files[0];
+    console.log(file);
     let reader = new FileReader();
 
     reader.readAsDataURL(file);
+
     reader.onload = (readerEvent) => {
       content = readerEvent.target.result; // this is the content!
       image = new Image();
