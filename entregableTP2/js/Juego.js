@@ -4,7 +4,7 @@ class Juego {
         this.posY = posY;
         this.fill = fill;
         this.resaltado = false;
-        this.resaltadoEstilo = 'green'; //se puede agregar un metodo para cambiar el color
+        this.resaltadoEstilo = 'green';
         this.ctx = context;
     }
 

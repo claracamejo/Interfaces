@@ -3,13 +3,14 @@ class Ficha extends Juego {
         super(posX, posY, fill, context);
 
         this.radius = radius;
+        this.jugador = fill;
 
     }
 
     draw() {
         super.draw();
         let img;
-        if (this.fill == 'yellow') {
+        if (this.jugador == 'yellow') {
             img = document.querySelector('#imgFAmarilla');
         } else {
             img = document.querySelector('#imgFRoja');
