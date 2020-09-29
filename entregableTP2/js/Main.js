@@ -10,10 +10,14 @@ let ptsR = 0;
 let ptsA = 0;
 let puntosR = document.querySelector('#puntosRojo');
 let puntosA = document.querySelector('#puntosAmarillo');
-document.querySelector('#reiniciar').addEventListener('click', function () {
-    clearCanvas();
+document.querySelector('#reiniciar').addEventListener('click', limpiar);
+
+function limpiar() {
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+    piezas = [];
     addPiezas();
-});
+};
 
 puntosR.getAttributeNode('value').value = ptsR;
 puntosA.getAttributeNode('value').value = ptsA;
@@ -94,20 +98,10 @@ function onMouseDown(e) {
 function onMouseUp(e) {
     isMouseDown = false;
     if (tablero.moveInside(e.layerX, e.layerY) && lastClickedFigure != null) {
-
         tablero.addFicha(lastClickedFigure, e.layerX, e.layerY);
         drawFigure();
-
-        if (tablero.buscar4enLinea() == 'red') {
-            ptsR++;
-            puntosR.getAttributeNode('value').value = ptsR;
-            alert("Ha Ganado el Jugador Rojo");
-        } else if (tablero.buscar4enLinea() == 'yellow') {
-            ptsA++;
-            puntosA.getAttributeNode('value').value = ptsA;
-            alert("Ha Ganado el Jugador Amarillo");
-        }
     }
+    setTimeout(buscarGanador, 1500);
 }
 
 function onMouseMove(e) {
@@ -129,6 +123,20 @@ function findClickedFigure(x, y) {
 canvas.addEventListener('mousedown', onMouseDown, false);
 canvas.addEventListener('mouseup', onMouseUp, false);
 canvas.addEventListener('mousemove', onMouseMove, false);
+
+function buscarGanador() {
+    if (tablero.buscar4enLinea() == 'red') {
+        ptsR++;
+        puntosR.getAttributeNode('value').value = ptsR;
+        alert("Ha Ganado el Jugador Rojo");
+        limpiar();
+    } else if (tablero.buscar4enLinea() == 'yellow') {
+        ptsA++;
+        puntosA.getAttributeNode('value').value = ptsA;
+        alert("Ha Ganado el Jugador Amarillo");
+        limpiar();
+    }
+}
 
 function clearCanvas() {
     ctx.fillStyle = '#F8F8FF';
