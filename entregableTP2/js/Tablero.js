@@ -41,43 +41,56 @@ class Tablero extends Juego {
         let fil; let col;
         col = Math.trunc((x - this.posX) / (this.imageScaledWidth / this.col));
         fil = Math.trunc((y - this.posY) / (this.width / this.fil));
-        console.log(fil, col);
+
         return (fil >= 0 && fil < this.fil && col >= 0 && col < this.col);
     }
 
     addFicha(ficha, x, y) {
-        let fil; let col;
+        let c; let col;
 
         col = Math.trunc((x - this.posX) / (this.imageScaledWidth / this.col));
-        console.log('altura', col);
-        for (let f = this.fil - 1; f >= 0; f--) {
 
+        if (col == '0') {
+            c = 207;
+        } else if (col == '1') {
+            c = 281;
+        } else if (col == '2') {
+            c = 356;
+        } else if (col == '3') {
+            c = 430;
+        } else if (col == '4') {
+            c = 504;
+        } else if (col == '5') {
+            c = 578;
+        } else if (col == '6') {
+            c = 653;
+        }
+
+        for (let f = this.fil - 1; f >= 0; f--) {
             if (this.juego[f][col] == 'vacio') {
                 if (f == '5') {
-                    ficha.setPosition(x, 558);
+                    ficha.setPosition(c, 558);
                     this.juego[f][col] = ficha;
                 } else if (f == '4') {
-                    ficha.setPosition(x, 475);
+                    ficha.setPosition(c, 475);
                     this.juego[f][col] = ficha;
                 } else if (f == '3') {
-                    ficha.setPosition(x, 392);
+                    ficha.setPosition(c, 392);
                     this.juego[f][col] = ficha;
                 } else if (f == '2') {
-                    ficha.setPosition(x, 309);
+                    ficha.setPosition(c, 309);
                     this.juego[f][col] = ficha;
                 } else if (f == '1') {
-                    ficha.setPosition(x, 226);
+                    ficha.setPosition(c, 226);
                     this.juego[f][col] = ficha;
                 } else {
-                    ficha.setPosition(x, 143);
+                    ficha.setPosition(c, 143);
                     this.juego[f][col] = ficha;
                 }
-                this.mostrarTablero();
-
+                //this.mostrarTablero();
                 return;
             }
         }
-
     }
 
     iniciarTablero() {

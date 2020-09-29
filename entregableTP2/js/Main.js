@@ -5,7 +5,6 @@ let canvasHeight = canvas.height;
 let lastClickedFigure = null;
 let isMouseDown = false;
 
-console.log('canvas', canvasWidth, 'X', canvasHeight);
 let ptsR = 0;
 let ptsA = 0;
 let puntosR = document.querySelector('#puntosRojo');
@@ -22,7 +21,6 @@ function limpiar() {
 puntosR.getAttributeNode('value').value = ptsR;
 puntosA.getAttributeNode('value').value = ptsA;
 
-console.log(puntosA, puntosR);
 
 let piezas = [];
 let tablero;
@@ -38,8 +36,6 @@ function addTablero() {
 
     tablero = new Tablero(posX, posY, 500, 450, color, ctx);
     piezas.push(tablero);
-
-    tablero.mostrarTablero();
 }
 
 function addFicha(i) {
@@ -101,7 +97,7 @@ function onMouseUp(e) {
         tablero.addFicha(lastClickedFigure, e.layerX, e.layerY);
         drawFigure();
     }
-    setTimeout(buscarGanador, 1500);
+    setTimeout(buscarGanador, 500);
 }
 
 function onMouseMove(e) {
