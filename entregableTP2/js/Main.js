@@ -11,6 +11,15 @@ let puntosR = document.querySelector('#puntosRojo');
 let puntosA = document.querySelector('#puntosAmarillo');
 document.querySelector('#reiniciar').addEventListener('click', limpiar);
 
+document.querySelector('#reiniciarJ').addEventListener('click', function () {
+    ptsR = 0;
+    ptsA = 0;
+    puntosR.getAttributeNode('value').value = ptsR;
+    puntosA.getAttributeNode('value').value = ptsA;
+
+    limpiar();
+});
+
 function limpiar() {
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
