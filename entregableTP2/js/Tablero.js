@@ -5,7 +5,7 @@ class Tablero extends Juego {
         this.width = width;
         this.height = height;
         this.imageAspectRatio;
-        this.imageScaledHeight;
+        this.imageScaledWidth;
         this.juego = [];
         this.col = 7;
         this.fil = 6;
@@ -19,9 +19,9 @@ class Tablero extends Juego {
         let img = document.querySelector('#imgTablero');
 
         this.imageAspectRatio = (1.0 * img.width) / img.height;
-        this.imageScaledHeight = this.height * this.imageAspectRatio;
+        this.imageScaledWidth = this.height * this.imageAspectRatio;
 
-        this.ctx.drawImage(img, this.posX, this.posY, this.imageScaledHeight, this.width);
+        this.ctx.drawImage(img, this.posX, this.posY, this.imageScaledWidth, this.width);
     }
 
     getWidth() {
@@ -39,22 +39,45 @@ class Tablero extends Juego {
 
     moveInside(x, y) {
         let fil; let col;
-        col = Math.round((x - this.posX) / (this.imageScaledHeight / this.fil));
+        col = Math.round((x - this.posX) / (this.imageScaledWidth / this.fil));
         fil = Math.round((y - this.posY) / (this.width / this.col)) - 1;
-        console.log(fil, col);
+        //console.log(fil, col);
         return (fil >= 0 && fil < this.fil && col >= 0 && col < this.col);
     }
 
     addFicha(ficha, x, y) {
         let fil; let col;
 
-        col = Math.round((x - this.posX) / (this.imageScaledHeight / this.fil));
-        fil = Math.round((y - this.posY) / (this.width / this.col)) - 1;
-        if (this.juego[fil][col] === 'vacio') {
-            this.juego[fil][col] = ficha;
-        };
+        col = Math.trunc((x - this.posX) / (this.imageScaledWidth / this.col));
+        console.log('altura', col);
+        for (let f = this.fil - 1; f >= 0; f--) {
 
-        this.mostrarTablero();
+            if (this.juego[f][col] == 'vacio') {
+                if (f == '5') {
+                    ficha.setPosition(x, 558);
+                    this.juego[f][col] = ficha;
+                } else if (f == '4') {
+                    ficha.setPosition(x, 475);
+                    this.juego[f][col] = ficha;
+                } else if (f == '3') {
+                    ficha.setPosition(x, 392);
+                    this.juego[f][col] = ficha;
+                } else if (f == '2') {
+                    ficha.setPosition(x, 309);
+                    this.juego[f][col] = ficha;
+                } else if (f == '1') {
+                    ficha.setPosition(x, 226);
+                    this.juego[f][col] = ficha;
+                } else {
+                    ficha.setPosition(x, 143);
+                    this.juego[f][col] = ficha;
+                }
+                this.mostrarTablero();
+
+                return;
+            }
+        }
+
     }
 
     iniciarTablero() {

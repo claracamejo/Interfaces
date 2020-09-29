@@ -4,24 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>Entregable TP 2</title>
 </head>
 
 <body>
     <h1>4 en Linea</h1>
 
-    <p><strong>Jugador Rojo: </strong><span id="puntosRojo">0</span></p>
-    <p><strong>Jugador Amarillo: </strong><span id="puntosAmarillo">0</span></p>
-    <p id="pResultado">
-        <span id="spanResultado"></span>
-        <button type="button" class="btn" id="btnSiguiente">Siguiente partida</button>
-    </p>
 
-    <canvas id="canvas" width="1100" height="750"></canvas>
+    <label for="puntosRojo"><strong>Jugador Rojo: </strong></label>
+    <input type="text" id="puntosRojo" value="">
+    <label for="puntosAmarillo"><strong>Jugador Amarillo: </strong></label>
+    <input type="text" id="puntosAmarillo" value="">
+    <button id="reiniciar">Reiniciar Partida</button>
+
+
+    <canvas id="canvas" width="950" height="700"></canvas>
     <img src="./images/tablerobien.png" id="imgTablero" style="display: none;">
     <img src="./images/ficha-roja.png" id="imgFRoja" style="display: none;">
     <img src="./images/ficha-Amarilla.png" id="imgFAmarilla" style="display: none;">
-    <script src="./js/Jugador.js"></script>
+
     <script src="./js/Juego.js"></script>
     <script src="./js/Ficha.js"></script>
     <script src="./js/Tablero.js"></script>

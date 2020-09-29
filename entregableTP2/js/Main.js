@@ -6,18 +6,23 @@ let lastClickedFigure = null;
 let isMouseDown = false;
 
 console.log('canvas', canvasWidth, 'X', canvasHeight);
-let puntosR = document.querySelector('#puntosRojo').innerHTML;
-let puntosA = document.querySelector('#puntosAmarillo').innerHTML;
 let ptsR = 0;
 let ptsA = 0;
+let puntosR = document.querySelector('#puntosRojo');
+let puntosA = document.querySelector('#puntosAmarillo');
+document.querySelector('#reiniciar').addEventListener('click', function () {
+    clearCanvas();
+    addPiezas();
+});
 
-puntosR.value = 0;
-puntosA.value = 0;
+puntosR.getAttributeNode('value').value = ptsR;
+puntosA.getAttributeNode('value').value = ptsA;
 
 console.log(puntosA, puntosR);
 
 let piezas = [];
 let tablero;
+let ultimoJugador;
 window.onload = function () {
     addPiezas();
 }
@@ -51,6 +56,7 @@ function addFicha(i) {
 }
 
 function addPiezas() {
+    console.log('addpiezas');
     for (let i = 0; i < 42; i++) {
         addFicha(i);
     }
@@ -72,6 +78,7 @@ function onMouseDown(e) {
 
     if (lastClickedFigure != null) {
         lastClickedFigure.setResaltado(false);
+        ultimoJugador = lastClickedFigure.getFill();
         lastClickedFigure = null;
     }
 
@@ -86,6 +93,21 @@ function onMouseDown(e) {
 
 function onMouseUp(e) {
     isMouseDown = false;
+    if (tablero.moveInside(e.layerX, e.layerY) && lastClickedFigure != null) {
+
+        tablero.addFicha(lastClickedFigure, e.layerX, e.layerY);
+        drawFigure();
+
+        if (tablero.buscar4enLinea() == 'red') {
+            ptsR++;
+            puntosR.getAttributeNode('value').value = ptsR;
+            alert("Ha Ganado el Jugador Rojo");
+        } else if (tablero.buscar4enLinea() == 'yellow') {
+            ptsA++;
+            puntosA.getAttributeNode('value').value = ptsA;
+            alert("Ha Ganado el Jugador Amarillo");
+        }
+    }
 }
 
 function onMouseMove(e) {
@@ -98,15 +120,7 @@ function onMouseMove(e) {
 function findClickedFigure(x, y) {
     for (let i = 0; i < piezas.length; i++) {
         const element = piezas[i];
-        if (element.isPointInside(x, y)) {
-            if (tablero.moveInside(x, y)) {
-                tablero.addFicha(element, x, y);
-                console.log(tablero.buscar4enLinea());
-                if (tablero.buscar4enLinea() == 'red') {
-                    ptsR++;
-                    puntosR.value = ptsR;
-                }
-            }
+        if (element.isPointInside(x, y) && (element.getFill() != ultimoJugador)) {
             return element;
         }
     }
@@ -120,12 +134,3 @@ function clearCanvas() {
     ctx.fillStyle = '#F8F8FF';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 };
-
-function clickColumna(evento) {
-    if (!pausa) {
-        var col = evento.target.getAttribute("data-col");
-        jugar(col, tablero);
-    }
-    else
-        console.log("Juego pausado.");
-}
