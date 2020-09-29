@@ -39,9 +39,9 @@ class Tablero extends Juego {
 
     moveInside(x, y) {
         let fil; let col;
-        col = Math.round((x - this.posX) / (this.imageScaledWidth / this.fil));
-        fil = Math.round((y - this.posY) / (this.width / this.col)) - 1;
-        //console.log(fil, col);
+        col = Math.trunc((x - this.posX) / (this.imageScaledWidth / this.col));
+        fil = Math.trunc((y - this.posY) / (this.width / this.fil));
+        console.log(fil, col);
         return (fil >= 0 && fil < this.fil && col >= 0 && col < this.col);
     }
 
