@@ -1,0 +1,43 @@
+.cuerpo{
+    position: absolute;
+    display: block;
+    width: 80%;
+    margin: 2%;
+    height: 500 px;
+    z-index: 1;
+}
+
+.texto{
+   width: 45%;
+   position: absolute;
+   float: left; 
+   z-index: 1;
+}
+
+.lista{
+    position: sticky;
+    float: right;  
+    margin-left: 10%;
+    text-align: left;
+    z-index: 1;
+}
+
+.lista ul{
+    list-style-image: url('./favicon-16x16.png');
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.lista ul li{
+    max-height: 20 px ;
+}
+
+header{
+    text-align: center;
+    background-image: linear-gradient(to bottom right, rgb(191, 109, 238), rgb(0, 255, 149))
+}
+.tp3{
+   clear: unset;
+   position: absolute;
+   display: block;
+   z-index: 1;
+}

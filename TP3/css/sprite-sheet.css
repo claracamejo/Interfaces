@@ -1,0 +1,54 @@
+.butterfly{
+    width: 441px;
+    height: 416px;
+    background: url(./b49845d28401378711d4f10524a4bb52.png) left center;
+    animation: fly 0.6s steps(7) infinite;
+    z-index: 1;
+    display: none;
+}
+
+@keyframes fly{
+    0% {background-position: 0px;}
+    100% {background-position: -3087px;}
+}
+
+.fondo{
+
+    position: absolute;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.f1{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image:url('./fondo.png') ;
+    /* animation: scroll 25s infinite linear; */
+}
+
+.f2{
+    width: 100%;
+    height: 90%;
+    top: 60px;
+    left: 0;
+    background-image:url('./fondo2.png') ;
+   /*  animation: scroll 15s infinite linear; */
+}
+
+.f3{
+    width: 100%;
+    height: 50%;
+    top: 300px;
+    left: 0;
+    background-image:url('./fondo3.png') ;
+    /* animation: scroll 10s infinite linear; */
+}
+
+@keyframes scroll {
+    0% {background-position-x: 0px;}
+    100% {background-position-x: -759px;}
+}

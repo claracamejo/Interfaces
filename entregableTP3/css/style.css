@@ -1,0 +1,116 @@
+.webBody{
+  /* visibility: hidden; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: -1%  auto 0 -1%;
+  background-color: black;
+}
+
+#contedor_carga{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(0, 0, 0);
+}
+
+ #imgLoader{
+    width: 100%;
+    max-height: auto;  
+}
+
+#loader {
+    border: 16px solid #2020208a;
+    border-radius: 50%;
+    border-top: 16px solid #CDA275;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 90%;
+    left: 53%;
+    margin: -75px 0 0 -75px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;   
+}
+
+  
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Pagina del index*/
+
+#imgHero{
+  align-self: center;
+  margin-left: auto;
+  max-height: 620px;
+}
+
+/* Pagina de seccion de comentarios*/
+.commentSection {
+  color: #eacbc3;
+  background: #f2f2f2  repeat ;
+  /* background-color: ; */
+  margin-left: 15%;
+  margin-top: 5%;
+  width: 70%;
+  height: auto;
+  background-image: url('./images/pared.png');
+  /* background-repeat:; */
+  border-radius: 5px;
+  padding: 20px;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+input[type=submit] {
+  background-color: #9f766b;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: #ddaea1;
+}
+
+.col-25 {
+  font: white;
+  font-style: oblique;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  width: 75%;
+  margin-top: 6px;
+  margin-left: 5%;
+  background-color: '#9f766b';
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

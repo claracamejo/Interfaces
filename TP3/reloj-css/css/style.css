@@ -1,0 +1,75 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #D9D7DD;
+}
+
+.reloj{
+    border-radius: 100%;
+    background: #ffffff;
+    border: 5px solid white;
+    box-shadow: inset 2px 3px 8px 0 rgba(0,0,0,0.1);
+}
+
+.wrap{
+    overflow: hidden;
+    position: relative;
+    width: 350px;
+    height: 350px;
+    border-radius: 100%;
+}
+
+@keyframes clockHandRotation{
+    0% {transform: rotateZ(0deg);}
+    50% {transform: rotateZ(180deg);}
+    100% {transform: rotateZ(360deg);}
+}
+
+.minute, .hour{
+    position: absolute;
+    height: 100px;
+    width: 6px;
+    margin: auto;
+    top: -27%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: black;
+    transform-origin: bottom center;
+    transform: rotate(0deg);
+    box-shadow: 0 0 10px black;
+    z-index: 1;
+}
+
+.hour{
+    animation: clockHandRotation 43200s linear infinite;
+}
+
+.minute{
+    position: absolute;
+    height: 130px;
+    width: 4px;
+    top: -38%;
+    left: 0;
+    box-shadow: 0 0 10px black;
+    animation: clockHandRotation 3600s linear infinite;
+}
+
+.second{
+    position: absolute;
+    height: 90px;
+    width: 2px;
+    margin: auto;
+    top: -26%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 4px;
+    background: red;
+    transform-origin: bottom center;
+    transform: rotate(180deg);
+    z-index: 1;
+    animation: clockHandRotation 60s linear infinite;
+}
