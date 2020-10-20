@@ -3,7 +3,7 @@ body{ /*para suscribir el estio por defecto de chrome tuve que darle el estilo a
   margin: 0vw 0vw 0vw 0vw;
 }
 .webBody{
-  /* visibility: hidden; */
+  visibility: hidden;
   width: 100vw;
   background-color: rgba(14, 13, 13, 0.911);
   font-family: Arial;
