@@ -1,14 +1,13 @@
-/* window.onload = function () {
-    //setTimeout(borrarCarga, 3000);
-    borrarCarga;
+window.onload = function () {
+    setTimeout(borrarCarga, 3000);
 }
 
 function borrarCarga() {
-    //let carga = document.querySelector('#contedor_carga');
+    let carga = document.querySelector('#contedor_carga');
     let body = document.querySelector('.webBody');
-    //carga.style.display = 'none';
+    carga.style.display = 'none';
     body.style.visibility = 'visible';
-} */
+}
 
 document.querySelector('.icon').addEventListener('click', myFunction);
 
