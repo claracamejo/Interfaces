@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Comentarios</title>
 </head>
 
 <body>
-    <!-- <div id="contedor_carga">
-        <img src="./css/images/img-loader2.jpeg" id="imgLoader">
+    <div id="contedor_carga">
+        <img src="./css/images/loader.jpg" id="imgLoader">
         <div id="loader"></div>
-    </div> -->
+    </div>
     <div class="webBody">
         <div class="respmenu">
             <div class="topnav">
@@ -32,32 +33,37 @@
         </div>
 
         <div class="commentSection">
-
-            <div class="row">
-                <div class="col-25">
-                    <label for="fname">First Name</label>
+            <h1>Comentarios de los Fans</h1>
+            <div class="comentarios">
+            </div>
+            <div id="formcomment" name="form">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="fname" style="color: rgb(255, 206, 83); font-weight: bold;">Usuario</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="fname" class="name" placeholder="Escribe tu nombre..." value="">
+                    </div>
                 </div>
-                <div class="col-75">
-                    <input type="text" id="fname" name="firstname" placeholder="Escribe tu nombre...">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="subject" style="color: rgb(255, 206, 83); font-weight: bold;">Comentario</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="subject" name="subject"
+                            placeholder="Deja tu commentario a los protagonistas..."></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="submit" id="submit">Submit</button>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-25">
-                    <label for="subject">Subject</label>
-                </div>
-                <div class="col-75">
-                    <textarea id="subject" name="subject"
-                        placeholder="Deja tu commentario a los protagonistas..."></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <input type="submit" value="Submit">
-            </div>
-
         </div>
     </div>
 
-    <script type="text/javascript" src="./js/main.js"></script>
+
+
+    <script type="text/javascript" src="./js/comentarios.js"></script>
 </body>
 
 </html>
