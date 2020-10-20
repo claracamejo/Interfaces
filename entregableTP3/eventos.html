@@ -4,27 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 
 <body>
+    <!-- <div id="contedor_carga">
+        <img src="./css/images/img-loader2.jpeg" id="imgLoader">
+        <div id="loader"></div>
+    </div> -->
     <div class="webBody">
         <div class="respmenu">
-            <nav>
-                <input type="checkbox" id="menu">
-                <label for="menu"> ☰ </label>
-                <ul>
-                    <li>Link 1</li>
-                    <li>Link 2</li>
-                    <li>Link 3</li>
-                    <li>Link 4</li>
-                </ul>
-            </nav>
+            <div class="topnav">
+                <p>Orgullo + Prejuicio + Zombies</p>
+                <div id="myLinks">
+                    <a href="./index.html">Home</a>
+                    <a href="./eventos.html">Eventos</a>
+                    <a href="./comentarios.html">Comentarios</a>
+                    <a href="#about">Extras</a>
+                    <a href="#about">Noticias</a>
+                </div>
+                <a href="javascript:void(0);" class="icon">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
         </div>
-        <div class="eventos"></div>
+        <div class="eventos">
+            <div class="acordeon">
+                <div class="acordeon__item">
+                    <input type="radio" name="acordeon" id="item1">
+                    <label for="item1" class="acordeon__titulo">Título 1</label>
+                    <p class="acordeon__contenido">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis quod
+                        dolorem nam iste laudantium doloremque perspiciatis assumenda, corporis minima, eligendi
+                        molestiae dolorum facere iure cum excepturi inventore expedita magni dolores.</p>
+                </div>
+                <div class="acordeon__item">
+                    <input type="radio" name="acordeon" id="item2">
+                    <label for="item2" class="acordeon__titulo">Título 2</label>
+                    <p class="acordeon__contenido">Accusantium et vel ipsam accusamus, quidem. Quisquam, sunt, alias
+                        doloribus fugiat accusantium dolores voluptatibus. Facere, enim, voluptatibus. Odio suscipit,
+                        possimus laboriosam debitis alias, nemo deleniti eius, recusandae architecto provident sit?</p>
+                </div>
+                <div class="acordeon__item">
+                    <input type="radio" name="acordeon" id="item3">
+                    <label for="item3" class="acordeon__titulo">Título 3</label>
+                    <p class="acordeon__contenido">Adipisci iure temporibus quae voluptate nemo ipsum aperiam ipsa
+                        ratione magni, quibusdam consequatur tempore illo, molestias illum eligendi labore
+                        necessitatibus cum minima. Et voluptatibus quos molestias dignissimos, officia minus, maxime.
+                    </p>
+                </div>
+                <div class="acordeon__item">
+                    <input type="radio" name="acordeon" id="item4">
+                    <label for="item4" class="acordeon__titulo">Título 4</label>
+                    <p class="acordeon__contenido">Quo voluptate deleniti, maiores natus, voluptas veniam, omnis fugit
+                        recusandae dignissimos dolores sequi quibusdam explicabo velit eligendi suscipit quod? Totam
+                        optio error odit, dicta facere et quae sint natus quaerat.</p>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <script type="text/javascript" src="./js/main.js"></script>
 </body>
 
 </html>

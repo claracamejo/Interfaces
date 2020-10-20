@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
@@ -16,21 +17,119 @@
 
     <div class="webBody">
         <div class="respmenu">
-            <nav>
-                <input type="checkbox" id="menu">
-                <label for="menu"> ☰ </label>
-                <ul>
-                    <li>Link 1</li>
-                    <li>Link 2</li>
-                    <li>Link 3</li>
-                    <li>Link 4</li>
-                </ul>
-            </nav>
+            <div class="topnav">
+                <p>Orgullo + Prejuicio + Zombis</p>
+                <div id="myLinks">
+                    <a href="./index.html">Home</a>
+                    <a href="./eventos.html">Eventos</a>
+                    <a href="./comentarios.html">Comentarios</a>
+                    <a href="#about">Extras</a>
+                    <a href="#about">Noticias</a>
+                </div>
+                <a href="javascript:void(0);" class="icon">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- <div class="heroDiv">
-            <img src="./css/images/pride-principal.jpg" id="imgHero">
-        </div> -->
+        <div class="heroDiv">
+            <img src="./css/images/pride-principal.jpg" class="imgHero">
+            <div class="niebla n1"></div>
+            <div class="niebla n2"></div>
+            <div class="niebla n3"></div>
+            <div class="niebla n4"></div>
+            <div class="titulo-peli"></div>
+        </div>
+
+        <div class="personajes">
+            <h1>Personajes</h1>
+            <div class="protagonistas">
+                <div class="card">
+                    <img src="css/images/cuadro-darcy.png"
+                        style="width:100%; display:block; margin:auto; padding-top: 3%;">
+                    <div class="pcontainer">
+                        <h4><b>Sr. Darcy</b></h4>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="css/images/cuadro-jane.png"
+                        style="width:100%; display:block; margin:auto; padding-top: 3%;">
+                    <div class="pcontainer">
+                        <h4><b>Jane Bennet</b></h4>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="css/images/cuadro-bingley.png"
+                        style="width:100%; display:block; margin:auto; padding-top: 3%;">
+                    <div class="pcontainer">
+                        <h4><b>Sr. Bingley</b></h4>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="css/images/cuadro-liz.png"
+                        style="width:100%; display:block; margin:auto; padding-top: 3%;">
+                    <div class="pcontainer">
+                        <h4><b>Elizabeth Bennet</b></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cuentaRegresiva" load="cuenta()">
+            <h3>Cuenta Regresiva para el Re-Estreno</h3>
+
+            <div class="manito m1"></div>
+            <div id="clockdiv">
+                <div>
+                    <span class="days"></span>
+                    <div class="smalltext">Days</div>
+                </div>
+                <div>
+                    <span class="hours"></span>
+                    <div class="smalltext">Hours</div>
+                </div>
+                <div>
+                    <span class="minutes"></span>
+                    <div class="smalltext">Minutes</div>
+                </div>
+                <div>
+                    <span class="seconds"></span>
+                    <div class="smalltext">Seconds</div>
+                </div>
+            </div>
+            <div class="manito m2"></div>
+        </div>
+        <div class="escenas" load="carrousel()">
+            <h1>Escenas Destacadas</h1>
+            <div class="slideshow-container">
+
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 3</div>
+                    <img src="./css/images/elizabeth.jpg" style="width:100%">
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 3</div>
+                    <img src="./css/images/darcy-y-bingley.jpg" style="width:100%">
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 3</div>
+                    <img src="./css/images/jane-y-eliz.jpg" style="width:100%">
+                </div>
+
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            </div>
+            <br>
+
+            <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript" src="./js/main.js"></script>
