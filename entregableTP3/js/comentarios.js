@@ -56,8 +56,8 @@ function cargarcomentario(coment) {
     let newH3 = document.createElement("h3");
     let newp = document.createElement("p");
 
-    newH3.textContent = "Usuario: " + coment.usuario;
-    newp.textContent = "Comentario: " + coment.comentario;
+    newH3.textContent = coment.usuario;
+    newp.textContent = coment.comentario;
 
     newDiv.appendChild(newH3);
     newDiv.appendChild(newp);
